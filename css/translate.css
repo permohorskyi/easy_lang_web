@@ -1,0 +1,164 @@
+#translate_text{
+    
+    height: 200px;
+    width: 100%;
+}
+#translate_explain{
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+}
+.input_block{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+}
+.translate_block{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.trans{
+    display: flex;
+    flex-direction: column;
+    
+    margin-bottom: 10px;
+}
+.trans span{
+    color:grey;
+}
+.change_arrow{
+    width: 30px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.translate_button{
+    display: flex;
+    margin-top: 10px;
+    border:none;
+    align-self: flex-end;
+    background-color: #827ffe;
+    color:white;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.translate_button:active{
+    background-color: #6361c9 !important;
+}
+.clear_button{
+    display: flex;
+    
+    border:none;
+    align-self: flex-end;
+    background-color: #827ffe;
+    color:white;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.clear_button:active{
+    background-color: #6361c9 !important;
+}
+.choose_language{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.drop_lang{
+    min-width: 30%;
+}
+.hr_minimum{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(194, 192, 192);
+}
+.choice_mod input{
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+}
+.translate_type{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.cut_down{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+.widget{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.speech_text{
+    width: 40px;
+    cursor: pointer;
+}
+.hr_big{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+.name_group{
+    margin-bottom: 5px;
+}
+
+.copy_text{
+    display: flex;
+    align-self: flex-end;
+    width: 30px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .translate_block{
+        width: 70%;
+    }
+    
+
+}
+
+@media (max-width: 600px) {
+    .translate_block{
+        width: 90%;
+    }
+    
+
+}
+
+@media (max-width: 400px) {
+    .translate_block{
+        width: 95%;
+    }
+    .input_block textarea{
+        height: 150px !important;
+    }
+
+}

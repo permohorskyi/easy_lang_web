@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/main.css">
+<link rel="stylesheet" href="/public/css/menu.css">
+<link rel="stylesheet" href="/public/css/dictionary.css">
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+    <div class="container">
+        <div class="menu_side none">
+            <div class="content_menu">
+                <div class="close-button" onclick="close_menu()">
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                  </div>
+                <div class="select_lang">
+                    <div  class="dropdown">
+                        <div class="dropdown-select" onclick="select(this);">
+                        <span class="dictionary_info">{{current_lang}}</span>
+                        <i class="arrow down"></i>
+                        </div>
+                        <ul class="dropdown-list">
+                            {{#languages}}
+                            <li value="{{id}}" onclick="select_option(this);set_current_lang(this);">{{language_name}}</li>
+                            {{/languages}}
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="/view/userspace/learn/main" class="a menu_item">
+                    Головна сторінка
+                    <div class="hr"></div>
+                </a>
+                <a href="/view/userspace/translate/main" class="a menu_item">
+                    Перекладач
+                    <div class="hr"></div>
+                </a>
+                <a href="/view/userspace/translate/history" class="a menu_item">
+                    Історія перекладів
+                    <div class="hr"></div>
+                </a>
+                <a href="/view/userspace/dictionary" class="a menu_item">
+                    Словник речень
+                    <div class="hr"></div>
+                </a>
+                <a href="/api/userspace/outauth" class="a menu_item">
+                    Вийти
+                    <div class="hr"></div>
+                </a>
+            </div>
+        </div>
+        <div class="header">
+            <a href="/view/userspace/learn/main" class="a"><h1>Easy <span style="color: #827ffe;">{{current_lang}}</span></h1></a>
+            <img src="/public/img/Hamburger_icon.svg.png" alt="" class="open_menu" onclick="open_menu()">
+        </div>
+        <div class="cont">
+            <h1>Словник {{current_lang}}</h1>
+            <div class="inputs">
+                <textarea name="text" id="ukr_sentence" placeholder="Українське речення"></textarea>
+                <textarea name="text" id="ukr_sentence_context" placeholder="Контекст українського речення"></textarea>
+                <textarea name="text" id="lang_sentence" placeholder="{{current_lang}} речення"></textarea>
+                
+                <button onclick="add_newsentence();">Додати</button>
+            </div>
+            <div class="hrr"></div>
+            <div class="dumps">
+                <button onclick="dump_index();">Експорт по запису</button>
+                <button onclick="dump();">Експорт всього</button>
+            </div>
+            <div class="sentences_items">
+                <div class="item_sentence">
+                    Вивід всіх речень. Пагінація. Видалення конкретного речення. Дамп в анкі та налаштування вказівника звідки робити дамп.
+                </div>
+                {{#dictionary}}
+                <div class="item_sentence" value="{{id}}">
+                    <div class="item_text">
+                        <span class="sentence_from">{{sentence_from}}</span>
+                        <span class="sentence_from_context">{{sentence_from_context}}</span>
+                        <span class="sentence_into">{{sentence_into}}</span>
+                    </div>
+                    <div class="item_button">
+                        <button onclick="delete_item(this);">Видалити</button>
+                        <button class="pointer" onclick="set_item(this);">!</button>
+                    </div>
+                    
+                </div>
+                {{/dictionary}}
+            </div>
+            <div class="pagination_block">
+                <img src="/public/img/arr_pagination.png" alt="" id="back_arr" onclick="go_back();">
+                <button class="first_page" onclick="go_first();">
+                    1
+                </button>
+                
+                <img src="/public/img/arr_pagination.png" alt=""  id="next_arr" onclick="go_next();">
+                
+            </div>
+        </div>
+       
+    </div>
+    <script>
+        let index_dump={{index_dump}};
+    </script>
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/drop_down.js"></script>
+    <script src="/public/js/post.js"></script>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/menu.js"></script>
+    <script src="/public/js/dictionary.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login_block">
+            <h1>LOGIN</h1>
+           <div class="user_form">
+                <div class="user_data_block" id="auth">
+                    <input type="text" name="user_name" class="user_name" placeholder="Username">
+                    <input type="password" name="password" class="password" placeholder="Password">
+                </div>
+                <button type="submit" class="submit" onclick="auth()">LOGIN</button>
+            </div>
+            
+        </div>
+        
+    </div>
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/post.js"></script>
+</body>
+</html>

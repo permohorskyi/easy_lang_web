@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/init.css">
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+    <div class="lang_item select_base none">
+        <div  class="dropdown select_lang ">
+            <div class="dropdown-select" onclick="select(this);">
+            <span class="dictionary_info">Оберіть мову</span>
+            <i class="arrow down"></i>
+            </div>
+            <ul class="dropdown-list">
+                {{#languages}}
+                <li value="{{id}}" onclick="select_option(this);">{{language_name}}</li>
+                {{/languages}}
+                
+
+            
+            </ul>
+        </div>
+        <div  class="dropdown select_lang select_level">
+            <div class="dropdown-select" onclick="select(this);">
+            <span class="dictionary_level">Рівень</span>
+            <i class="arrow down"></i>
+            </div>
+            <ul class="dropdown-list">
+                {{#languages_levels}}
+                <li value="{{id}}" onclick="select_option(this);">{{level_name}}</li>
+                {{/languages_levels}}
+                
+
+            
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="init_dictionary">
+            <h2>Які мови ти хочеш вчити?</h2>
+            <div class="langs">
+               <!--dropdown here--> 
+                
+            </div>
+            <div class="add_lang">
+                <div class="space_add">
+
+                </div>
+                <div class="add_content">
+                    <span class="plus">+</span><span style="margin-left: 8px;">Додати мову</span>
+                </div>
+                
+            </div>
+            <div class="save" onclick="save_dictionaries()">
+                Зберегти
+            </div>
+        </div>
+    </div>
+   
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/drop_down.js"></script>
+    <script src="/public/js/post.js"></script>
+    <script src="/public/js/init_web.js"></script>
+</body>
+</html>

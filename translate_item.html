@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/menu.css">
+<link rel="stylesheet" href="/public/css/translate_item.css">
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+    <div class="container">
+        <div class="menu_side none">
+            <div class="content_menu">
+                <div class="close-button" onclick="close_menu()">
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                  </div>
+                <div class="select_lang">
+                    <div  class="dropdown">
+                        <div class="dropdown-select" onclick="select(this);">
+                        <span class="dictionary_info">{{current_lang}}</span>
+                        <i class="arrow down"></i>
+                        </div>
+                        <ul class="dropdown-list">
+                            {{#languages}}
+                            <li value="{{id}}" onclick="select_option(this);set_current_lang(this);">{{language_name}}</li>
+                            {{/languages}}
+                        </ul>
+                    </div>
+                </div>
+                <a href="/view/userspace/learn/main" class="a menu_item">
+                    Головна сторінка
+                    <div class="hr"></div>
+                </a>
+                <a href="/view/userspace/translate/main" class="a menu_item">
+                    Перекладач
+                    <div class="hr"></div>
+                </a>
+                <a href="/view/userspace/translate/history" class="a menu_item">
+                    Історія перекладів
+                    <div class="hr"></div>
+                </a>
+                <a href="/api/userspace/outauth" class="a menu_item">
+                    Вийти
+                    <div class="hr"></div>
+                </a>
+            </div>
+        </div>
+        <div class="header">
+            <a href="/view/userspace/learn/main" class="a"><h1>Easy <span style="color: #827ffe;">{{current_lang}}</span></h1></a>
+            
+            <img src="/public/img/Hamburger_icon.svg.png" alt="" class="open_menu" onclick="open_menu()">
+        </div>
+        <div class="content">
+            <div class="wrap">
+                <div class="back_page" onclick="back_page();">
+                    <img src="/public/img/arrow_back.png" alt="">
+                </div>
+                <div class="item_block">
+                    {{#translate_history}}
+                    <div class="langs">
+                        <div class="lang_from">
+                            <span class="lang_from_t">{{lang_from}}</span>
+                        </div>
+                        <span style="font-weight: 700;">--></span>
+                        <div class="lang_into">
+                            <span class="lang_into_t">{{lang_into}}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="translated_text item_info">
+                        <span class="explain_block">Текст який перекладали</span>
+                        <span class="text">{{translated_text}}</span>
+                        <div class="widget from_text">
+                            <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                            <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="context_text item_info">
+                        <span class="explain_block">Контекст в якому текст</span>
+                        <span class="text">{{context_text}}</span> 
+                        <div class="widget from_text">
+                            <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                            <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="deepl_translated item_info">
+                        <span class="explain_block">Переклад Deepl</span>
+                        <span class="text">{{deepl_translated}}</span> 
+                        <div class="widget into_text">
+                            <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                            <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="deepl_check item_info">
+                        <span class="explain_block">Перевірка перекладу Deepl</span>
+                        <span class="text">{{deepl_check_deepl}}</span>
+                        <div class="widget from_text">
+                            <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                            <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="type">
+                        {{#is_full}}
+                    <div class="type_text">
+                    <span>Тип перекладу:</span><h4> Повний</h4>
+                    </div>
+                    {{/is_full}}
+                    {{^is_full}}
+                    <div class="type_text">
+                    <span>Тип перекладу:</span><h4>Скорочений</h4>
+                </div>
+                    {{/is_full}}
+                    </div>
+                    
+                    <div class="hr"></div>
+                    <h2>Розмовною</h2>
+                    <div class="speak_block">
+                        <div class="gpt_translated item_info">
+                            <span class="explain_block">Переклад GPT</span>
+                            <span class="text">{{speak_gpt_translated}}</span>
+                            <div class="widget into_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="gpt_check item_info">
+                            <span class="explain_block">Перевірка перекладу GPT перекладачем Deepl</span>
+                            <span class="text">{{speak_deepl_check_gpt_translated}}</span>
+                            <div class="widget from_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="gpt_explain item_info">
+                            <span class="explain_block">Пояснення GPT</span>
+                            <span class="text">{{speak_explanation_gpt}}</span>
+                            <div class="widget from_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <h2>Формальною</h2>
+                    <div class="formal_block">
+                        <div class="gpt_translated item_info">
+                            <span class="explain_block">Переклад GPT</span>
+                            <span class="text">{{formal_gpt_translated}}</span>
+                            <div class="widget into_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="gpt_check item_info">
+                            <span class="explain_block">Перевірка перекладу GPT перекладачем Deepl</span>
+                            <span class="text">{{formal_deepl_check_gpt_translated}}</span>
+                            <div class="widget from_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                           
+                        </div>
+                        <div class="hr"></div>
+                        <div class="gpt_explain item_info">
+                            <span class="explain_block">Пояснення GPT</span>
+                            <span class="text">{{formal_explanation_gpt}}</span>
+                            <div class="widget from_text">
+                                <img class="speech_text" src="/public/img/speech_icon.webp" alt="" onclick="speech(this);">
+                                <img class="copy_text" src="/public/img/copy-icon.png" alt="" onclick="copy(this);">
+                            </div>
+                        </div>
+                    </div>
+                    {{/translate_history}}
+                </div>
+               
+            </div>
+            <button class="button_delete delete"  onclick="delete_item(this);">Видалити</button>
+        </div>
+    </div>
+    <script>
+        {{#translate_history}}
+        let current_id={{id}}
+        {{/translate_history}}
+    </script>
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/drop_down.js"></script>
+    <script src="/public/js/post.js"></script>
+    <script src="/public/js/menu.js"></script>
+    <script src="/public/js/translate_item.js"></script>
+</body>
+</html>
